@@ -1,0 +1,19 @@
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/web-sso/protocol/openid-connect/certs
+
+  datasource:
+    url: jdbc:mysql://172.25.0.2:3306/awesomedata
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+    baseline-on-migrate: true
