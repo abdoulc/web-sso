@@ -14,6 +14,8 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - mynetwork
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -27,6 +29,27 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mysql
+    networks:
+      - mynetwork
+
+  app:
+    build:
+      context: ./awesome-app  # Points to the directory where Dockerfile is located
+      dockerfile: Dockerfile  # Optional if Dockerfile is named 'Dockerfile'
+    container_name: app
+    depends_on:
+      - mysql
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/awesomedata
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      - mynetwork
 
 volumes:
   mysql_data:
+
+networks:
+  mynetwork:

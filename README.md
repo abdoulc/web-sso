@@ -23,5 +23,3 @@ We use a spring boot app for our resource server, this app contains our data to 
 </details>
 
 
-#### An auction app
-A simple auction app that lets you create an auction and place an item. Other users can then bid, and the winner is the highest bidder.
