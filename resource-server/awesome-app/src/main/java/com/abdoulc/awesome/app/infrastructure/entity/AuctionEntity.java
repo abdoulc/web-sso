@@ -1,16 +1,20 @@
-package com.abdoulc.awesome.app.domain.model;
+package com.abdoulc.awesome.app.infrastructure.entity;
 
-import lombok.Builder;
+import com.abdoulc.awesome.app.domain.model.AuctionStatus;
+import com.abdoulc.awesome.app.domain.model.Item;
+import jakarta.persistence.*;
 import lombok.Value;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "auctions")
 @Value
-@Builder
-public class Auction {
-    Long id;
-    String sellerId;
+public class AuctionEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;    String sellerId;
     Item item;
     BigDecimal startingPrice;
     BigDecimal currentPrice;
