@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: Awesome App Api
+  description:
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8081/api
+
+paths:
+  /items:
+    get:
+      summary: Get list Item
+      operationId: getListItems
+      tags:
+        - Item
+      responses:
+        200:
+          description: List of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string

@@ -18,7 +18,11 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(c ->
-                        c.requestMatchers(HttpMethod.GET, "/api/pubic/**").permitAll()
+                        c.requestMatchers(HttpMethod.GET, "/api/pubic/**",  "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/swagger-resources/**",
+                                        "/webjars/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
